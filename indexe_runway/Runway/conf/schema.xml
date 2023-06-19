@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema name="my_schema" version="1.6">
+  <types>
+    <fieldType name="string" class="solr.StrField"/>
+    <fieldType name="text_general" class="solr.TextField" positionIncrementGap="100">
+      <analyzer type="index">
+        <tokenizer class="solr.StandardTokenizerFactory"/>
+        <filter class="solr.LowerCaseFilterFactory"/>
+	<filter class="solr.PorterStemFilterFactory"/>
+      </analyzer>
+      <analyzer type="query">
+        <tokenizer class="solr.StandardTokenizerFactory"/>
+        <filter class="solr.LowerCaseFilterFactory"/>
+	<filter class="solr.PorterStemFilterFactory"/>
+	<filter class="solr.SynonymFilterFactory" synonyms="synonyms.txt" ignoreCase="true" expand="true"/>
+      </analyzer>
+    </fieldType>
+    <fieldType name="int" class="solr.TrieIntField"/>
+    <fieldType name="long" class="solr.TrieLongField"/>
+    <fieldType name="float" class="solr.TrieFloatField"/>
+    <fieldType name="double" class="solr.TrieDoubleField"/>
+  </types>
+  <fields>
+    <field name="fit" type="text_general" indexed="true" stored="true"/>
+    <field name="id" type="int" indexed="true" stored="true"/>
+    <field name="item_id" type="int" indexed="true" stored="true"/>
+    <field name="weight" type="text_general" indexed="true" stored="true"/>
+    <field name="rating" type="float" indexed="true" stored="true"/>
+    <field name="review_text" type="text_general" indexed="true" stored="true"/>
+    <field name="review_summary" type="text_general" indexed="true" stored="true"/>
+    <field name="category" type="text_general" indexed="true" stored="true"/>
+    <field name="height" type="text_general" indexed="true" stored="true"/>
+    <field name="size" type="int" indexed="true" stored="true"/>
+    <field name="age" type="int" indexed="true" stored="true"/>
+    <field name="review_date" type="text_general" indexed="true" stored="true"/>
+    <field name="bust_size" type="text_general" indexed="true" stored="true"/>
+    <field name="rented_for" type="text_general" indexed="true" stored="true"/>
+    <field name="body_type" type="text_general" indexed="true" stored="true"/>
+    <field name="relevance" type="int" indexed="true" stored="true"/>
+  </fields>
+  <uniqueKey>id</uniqueKey>
+</schema>
